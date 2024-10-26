@@ -10,25 +10,12 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-client
-  .query({
-    query: gql`
-      query getTodoList {
-        getTodoList(
-          filters: { isDone: true },
-          orderBy: DATE_ASC) {
-          id
-          title
-        }
-      }
-    `,
-  })
-  .then((result) => console.log(result));
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
   </React.StrictMode>
 );
 
