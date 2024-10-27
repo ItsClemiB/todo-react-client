@@ -1,5 +1,6 @@
 import React from 'react';
 import { useMutation, gql } from '@apollo/client';
+import { Link } from 'react-router-dom'
 
 const UPDATE_TODO_STATUS = gql`
   mutation updateTodoStatus($id: ID!, $isDone: Boolean!) {
@@ -23,15 +24,17 @@ function TodoListItem(props) {
   if (error) return `Submission error! ${error.message}`;
 
   return (
-    <div className="todo-list-item" key={props.id}>
-      <h3>{props.title}</h3>
-      <p>{props.type}</p>
-      <p>{props.createdAt}</p>
-      <p>{String(props.isDone)}</p>
-      <button onClick={updateTodoStatus}>
-      {props.isDone ? 'RÉOUVRIR' : 'TERMINER'}
-    </button>
-    </div>
+    <Link key={props.id} to ={`/todos/${props.id}`}>
+      <div className="todo-list-item" key={props.id}>
+        <h3>{props.title}</h3>
+        <p>{props.type}</p>
+        <p>{props.createdAt}</p>
+        <p>{String(props.isDone)}</p>
+        <button onClick={updateTodoStatus}>
+          {props.isDone ? 'RÉOUVRIR' : 'TERMINER'}
+        </button>
+      </div>
+    </Link>
   );
 }
 

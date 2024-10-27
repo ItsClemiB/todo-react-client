@@ -4,17 +4,30 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import TodoDetails from "./routes/TodoDetails";
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/',
   cache: new InMemoryCache(),
 });
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+  },
+  {
+    path: '/todos/:todoId',
+    element: <TodoDetails />
+  }
+]);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <RouterProvider router={router} />
     </ApolloProvider>
   </React.StrictMode>
 );
