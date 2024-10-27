@@ -22,7 +22,7 @@ function TodoList() {
     if (error) return <p>Error : {error.message}</p>;
     
     return (data.getTodoList.map(({ id, title, createdAt, type, isDone}) => (
-        <TodoListItem id={id} title={title} type={type} isDone={isDone} createdAt={createdAt} />
+        <TodoListItem key={id} id={id} title={title} type={type} isDone={isDone} createdAt={createdAt} />
     )));
   }
 

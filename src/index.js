@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import TodoDetails from "./routes/TodoDetails";
+import TodoDetails from "./components/TodoDetails";
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/',

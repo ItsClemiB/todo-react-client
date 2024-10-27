@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
-
+import ToggleTodoStatusButton from './ToggleTodoStatusButton'
 
 const GET_TODO_DETAILS = gql`
   query GetTodoById($id: ID!) {
@@ -34,8 +34,8 @@ function TodoDetails() {
             <p>Terminé : { String(data.getTodoById.isDone) }</p>
             <p>{ data.getTodoById.text }</p>
             <p>{ data.getTodoById.createdAt }</p>
+            <ToggleTodoStatusButton id={params.todoId} isDone={data.getTodoById.isDone} />
         </div>
-
     );
 }
 
