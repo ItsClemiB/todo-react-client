@@ -7,8 +7,7 @@
 
 ### Technical improvements :
 #### 1. Project Structure
-The current structure of the projet is only suitable for basic fonctionalities. Create a structure more suited for projet growth, this includes :\
-    a. Isolating graphQL requests in a specific folder
+The current structure of the projet is only suitable for basic fonctionalities. Create a structure more suited for projet growth.
 
 #### 2. Component structure
 The target component structure is the following :

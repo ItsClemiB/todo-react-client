@@ -1,26 +1,18 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
-import ToggleTodoStatusButton from './ToggleTodoStatusButton'
-
-const GET_TODO_DETAILS = gql`
-  query GetTodoById($id: ID!) {
-    getTodoById(id: $id) {
-        createdAt
-        type
-        isDone
-        text
-        title
-    }
-  }
-`;
+import { useQuery } from '@apollo/client';
+import ToggleTodoStatusButton from './ToggleTodoStatusButton';
+import { GET_TODO_DETAILS } from '../graphql/todos.js';
 
 function TodoDetails() {
     const params = useParams();
     const { loading, error, data } = useQuery(GET_TODO_DETAILS, {
         variables: {
             id: params.todoId
-          },
+        },
+        refetchQueries: [
+          'GetTodoById'
+        ],
     });
 
     if (loading) return <p>Loading...</p>;

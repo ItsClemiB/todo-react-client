@@ -1,23 +1,17 @@
 import React from 'react';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation } from '@apollo/client';
+import { UPDATE_TODO_STATUS, GET_TODO_DETAILS } from '../graphql/todos.js'
 
-const UPDATE_TODO_STATUS = gql`
-  mutation updateTodoStatus($id: ID!, $isDone: Boolean!) {
-    updateTodoStatusById(id: $id, isDone: $isDone) {
-      id
-      isDone
-    }
-  }
-`;
 
 function ToggleTodoStatusButton(props) {
 
-    const [updateTodoStatus, { loading, error }] = useMutation(UPDATE_TODO_STATUS, {
+    const [ updateTodoStatus, { loading, error }] = useMutation(UPDATE_TODO_STATUS, {
       variables: {
         id: props.id,
         isDone: !props.isDone,
-      },
+      }, 
       refetchQueries: [
+        GET_TODO_DETAILS,
         'GetTodoById'
       ],
     });
