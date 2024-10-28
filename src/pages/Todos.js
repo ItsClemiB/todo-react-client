@@ -18,7 +18,7 @@ function Todos () {
     if (error) return <p>Error : {error.message}</p>;
 
     function handleChange(event) {
-      setOrderBy(event.target.value); 
+      setOrderBy(event.target.value === "" ? null : event.target.value); 
     }
 
     return (
@@ -26,6 +26,7 @@ function Todos () {
           <form>
             <label>Trier par date :
               <select name="selectedOrderByOption" onChange={ handleChange }>
+                <option value="">-</option>
                 <option value="DATE_ASC">Du plus ancien au plus récent</option>
                 <option value="DATE_DESC">Du plus récent au plus ancien</option>
               </select>
