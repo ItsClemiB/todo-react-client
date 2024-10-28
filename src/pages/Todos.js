@@ -1,10 +1,10 @@
 import React from 'react';
-import { useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import TodoList from '../components/TodoList';
 
+
 const GET_TODO_LIST = gql`
-  query GetTodoList() {
+  query GetTodoList {
     getTodoList(filters: {}) {
       id
       createdAt
@@ -27,6 +27,6 @@ function Todos () {
           <TodoList todoList={ data.getTodoList } />
         </div>
     )
-}
+  }
 
 export default Todos;
