@@ -10,9 +10,6 @@ function TodoDetails() {
         variables: {
             id: params.todoId
         },
-        refetchQueries: [
-          'GetTodoById'
-        ],
     });
 
     if (loading) return <p>Loading...</p>;
