@@ -12,7 +12,7 @@ const UPDATE_TODO_STATUS = gql`
 
 function ToggleTodoStatusButton(props) {
 
-    const [updateTodoStatus, { data, loading, error }] = useMutation(UPDATE_TODO_STATUS, {
+    const [updateTodoStatus, { loading, error }] = useMutation(UPDATE_TODO_STATUS, {
       variables: {
         id: props.id,
         isDone: !props.isDone,

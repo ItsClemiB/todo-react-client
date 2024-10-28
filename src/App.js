@@ -1,12 +1,10 @@
 import './App.css';
-import TodoList from './components/TodoList';
+import Todos from './pages/Todos';
 
 function App() {
   return (
     <div>
-      <h2>TODO LIST</h2>
-      <br/>
-      <TodoList/>
+      <Todos/>
     </div>
   );
 }
