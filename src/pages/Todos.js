@@ -1,5 +1,5 @@
 import React from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { useState } from 'react';
 import TodoList from '../components/TodoList';
 import { GET_TODO_LIST } from '../graphql/todos';
@@ -32,7 +32,7 @@ function Todos () {
               </select>
             </label>
           </form>
-          <TodoList todoList={ data.getTodoList } />
+          <TodoList listItems={ data.getTodoList } />
         </div>
     )
   }

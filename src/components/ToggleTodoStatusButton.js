@@ -3,12 +3,12 @@ import { useMutation } from '@apollo/client';
 import { UPDATE_TODO_STATUS, GET_TODO_DETAILS } from '../graphql/todos.js'
 
 
-function ToggleTodoStatusButton(props) {
+function ToggleTodoStatusButton({id, isDone}) {
 
     const [ updateTodoStatus, { loading, error }] = useMutation(UPDATE_TODO_STATUS, {
       variables: {
-        id: props.id,
-        isDone: !props.isDone,
+        id: id,
+        isDone: !isDone,
       }, 
       refetchQueries: [
         GET_TODO_DETAILS,
@@ -21,7 +21,7 @@ function ToggleTodoStatusButton(props) {
   
     return (
         <button onClick={updateTodoStatus}>
-            {props.isDone ? 'RÉOUVRIR' : 'TERMINER'}
+            {isDone ? 'RÉOUVRIR' : 'TERMINER'}
         </button>
     );
 }
