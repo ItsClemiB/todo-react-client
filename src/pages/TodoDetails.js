@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import ToggleTodoStatusButton from './ToggleTodoStatusButton';
+import ToggleTodoStatusButton from '../components/ToggleTodoStatusButton.js';
 import { GET_TODO_DETAILS } from '../graphql/todos.js';
 
 function TodoDetails() {

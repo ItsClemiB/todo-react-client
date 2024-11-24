@@ -13,8 +13,8 @@ export const GET_TODO_DETAILS = gql`
 `;
 
 export const GET_TODO_LIST = gql`
-  query GetTodoList($orderBy: Ordering) {
-    getTodoList(filters: {}, orderBy: $orderBy) {
+  query GetTodoList($filters: TodoFiltersInput, $orderBy: Ordering) {
+    getTodoList(filters: $filters, orderBy: $orderBy) {
       id
       createdAt
       type

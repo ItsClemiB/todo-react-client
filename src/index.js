@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import TodoDetails from "./components/TodoDetails";
+import TodoDetails from "./pages/TodoDetails";
+import Todos from "./pages/Todos";
+import {FilterProvider} from "./components/filter/FilterDetails.js";
+
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/',
@@ -15,7 +17,7 @@ const client = new ApolloClient({
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <Todos />,
   },
   {
     path: '/todos/:todoId',
@@ -27,7 +29,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <RouterProvider router={router} />
+      <FilterProvider>
+        <RouterProvider router={router} />
+      </FilterProvider>
     </ApolloProvider>
   </React.StrictMode>
 );

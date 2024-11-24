@@ -1,40 +1,45 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useQuery } from '@apollo/client';
-import { useState } from 'react';
 import TodoList from '../components/TodoList';
+import TodoFilter from '../components/filter/TodoFilter.js';
 import { GET_TODO_LIST } from '../graphql/todos';
+import { FilterContext } from '../components/filter/FilterDetails.js';
 
 
-function Todos () {
-    const [orderBy, setOrderBy] = useState(null);
+export default function Todos () {
+    const [filter,] = useContext(FilterContext);
 
     const { loading, error, data } = useQuery(GET_TODO_LIST, {
-      variables: {
-        orderBy: orderBy
-      }
+      variables: buildQueryArgs(filter)
     });
   
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error : {error.message}</p>;
 
-    function handleChange(event) {
-      setOrderBy(event.target.value === "" ? null : event.target.value); 
-    }
-
     return (
         <div>
-          <form>
-            <label>Trier par date :
-              <select name="selectedOrderByOption" onChange={ handleChange }>
-                <option value="">-</option>
-                <option value="DATE_ASC">Du plus ancien au plus récent</option>
-                <option value="DATE_DESC">Du plus récent au plus ancien</option>
-              </select>
-            </label>
-          </form>
-          <TodoList listItems={ data.getTodoList } />
+          <TodoFilter />
+          <TodoList listItems={data.getTodoList} />
         </div>
     )
   }
 
-export default Todos;
+  function buildQueryArgs(filter) {
+    let args = {};
+    let filters = {};
+
+    if (filter.types.length === 0) {
+      filters['types'] = ["RH", "Tech", "Communication", "Marketing"];
+    } else {
+      /* add a check for business only */ 
+      filters['types'] = filter.types;
+    }
+
+    if (filter.isDone) {
+      filters['isDone'] = filter.isDone;
+    }
+    args['filters'] = filters;
+    if (filter.orderBy) 
+      args['orderBy'] = filter.orderBy;
+    return args
+}

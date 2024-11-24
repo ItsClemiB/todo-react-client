@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import ToggleTodoStatusButton from './ToggleTodoStatusButton'
 
-function TodoListItem({id, title, type, createdAt, isDone}) {
+export default function TodoListItem({id, title, type, createdAt, isDone}) {
 
   return (
       <div className="todo-list-item" >
@@ -17,5 +17,3 @@ function TodoListItem({id, title, type, createdAt, isDone}) {
 
   );
 }
-
-export default TodoListItem;
